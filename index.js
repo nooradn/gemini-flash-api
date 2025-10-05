@@ -7,13 +7,12 @@ import { GoogleGenAI } from '@google/genai';
 const app = express();
 const upload = multer();
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
-// **Set your default Gemini model here:**
 const GEMINI_MODEL = "gemini-2.5-flash";
 
 app.use(express.json());
 
 // Helper function to extract text from response
+// a.k.a. 'Satpam'
 const extractText = (response) => {
   return response?.response?.candidates?.[0]?.content?.parts?.[0]?.text ||
          response?.candidates?.[0]?.content?.parts?.[0]?.text ||
